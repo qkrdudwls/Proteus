@@ -4,7 +4,7 @@
 
 ## Tokens, Lexemes, Patterns
 
-| Token | Sample Lexemes | Pattern |
+| **Token** | **Sample Lexemes** | **Pattern** |
 |:-----:|:-----:|:-----:|
 | PLUS | + | + |
 | MINUS | - | - |
