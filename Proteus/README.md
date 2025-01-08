@@ -12,4 +12,5 @@
 | DIV | / | / |
 | LPAREN | ( | ( |
 | RPAREN | ) | ) |
-| NUM | 1, 2, 5 | The natural number value entered by the user. |
+| DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
+| NUM | 2, 8, 16 | The natural number value entered by the user. |
