@@ -6,7 +6,8 @@
     #define DIV 4
     #define LPAREN 5
     #define RPAREN 6
-    #define NUM 7   
+    #define DIGIT 7   
+    #define NUM 8
 %}
 
 %%
@@ -17,7 +18,7 @@
 "/" {yylval=yytext[0]; return DIV;}
 "(" {yylval=yytext[0]; return LPAREN;}
 ")" {yylval=yytext[0]; return RPAREN;}
-[0-9]+ {yylval=atoi(yytext); return NUM;}
+[0-9]+ {yylval=atoi(yytext); return DIGIT;}
 [ \t\n] {;}
 
 %%
@@ -45,7 +46,7 @@ int main(void){
             printf("RPAREN: %c\n", yylval);
         }
         else if(token==NUM){
-            printf("NUM: %d\n", yylval);
+            printf("DIGIT: %d\n", yylval);
         }
     }
 }
