@@ -14,3 +14,39 @@
 | RPAREN | ) | ) |
 | DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
 | NUM | 2, 8, 16 | The natural number value entered by the user. |
+
+## Context-Free Grammar
+
+### Top-down Parsing
+
+E -> E+T | E-T | T
+
+T -> T*F | T/F | F
+
+F -> (E) | digit
+
+#### Eliminating Left Recursion
+
+E -> TE'
+
+E' -> +TE' | -TE' | ε
+
+T -> FT'
+
+T' -> *FT' | /FT' | ε
+
+F -> (E) | digit
+
+### Bottom-up Parsing
+
+E -> E+E
+
+E -> E-E
+
+E -> E*E
+
+E -> E/E
+
+E -> (E)
+
+E -> digit
