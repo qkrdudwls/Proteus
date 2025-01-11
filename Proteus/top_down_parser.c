@@ -97,21 +97,17 @@ void TermPrime(){
     }
 }
 
-void Factor(){
-    int result = 0;
-    switch(token){
-        case '(':
-            match('(');
-            Expression();
-            match(')');
-            break;
-        default:
-            result = isdigit(token);
-            if(result != 0){
-                match(token);
-            }else{
-                fprintf(stderr, "Syntax error\n");
-            }
-            break;
+void Factor() {
+    if (token == '(') {
+        match('(');
+        Expression();
+        match(')');
+    } else if (isdigit(token)) {
+        while (isdigit(token)) {
+            match(token);
+        }
+    } else {
+        fprintf(stderr, "Syntax error\n");
+        exit(1);
     }
 }
