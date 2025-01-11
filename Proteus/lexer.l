@@ -1,13 +1,5 @@
 %{
-    extern int yylval;
-    #define PLUS 1
-    #define MINUS 2
-    #define MULT 3
-    #define DIV 4
-    #define LPAREN 5
-    #define RPAREN 6
-    #define DIGIT 7   
-    #define NUM 8
+    #include "parser.h"
 %}
 
 %%
@@ -20,9 +12,10 @@
 ")" {yylval=yytext[0]; return RPAREN;}
 [0-9]+ {yylval=atoi(yytext); return DIGIT;}
 [ \t\n] {;}
+. {printf("Error: %c\n", yytext[0]); exit(1);}
 
 %%
-
+/*
 int yylval;
 int main(void){
     int token;
@@ -50,3 +43,4 @@ int main(void){
         }
     }
 }
+*/
