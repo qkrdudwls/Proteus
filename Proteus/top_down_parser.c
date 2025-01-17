@@ -8,6 +8,7 @@ char input[MAX_INPUT_SIZE];
 char token;
 int pivot;
 int yylval;
+int result;
 
 void match(char c);
 void Expression();
@@ -18,6 +19,7 @@ void Factor();
 
 int main(void){
     int isquit = 0;
+    result = 0;
 
     while(isquit == 0){
         memset(input, 0 ,sizeof(input));
@@ -104,6 +106,7 @@ void Factor() {
         match(')');
     } else if (isdigit(token)) {
         while (isdigit(token)) {
+            result = result * 10 + (token - '0');
             match(token);
         }
     } else {

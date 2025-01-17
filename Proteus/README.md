@@ -50,3 +50,5 @@ E -> E/E
 E -> (E)
 
 E -> digit
+
+- **Shift-Reduce Conflict 발생** 
