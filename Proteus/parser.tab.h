@@ -44,7 +44,8 @@
      __DIV__ = 261,
      __LPAREN__ = 262,
      __RPAREN__ = 263,
-     __DIGIT__ = 264
+     __DIGIT__ = 264,
+     UMINUS = 265
    };
 #endif
 

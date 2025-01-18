@@ -1,0 +1,252 @@
+Grammar
+
+    0 $accept: line $end
+
+    1 line: expr '\n'
+
+    2 expr: expr __PLUS__ term
+    3     | expr __MINUS__ term
+    4     | __MINUS__ term
+    5     | term
+
+    6 term: term __MULT__ factor
+    7     | term __DIV__ factor
+    8     | factor
+
+    9 factor: __LPAREN__ expr __RPAREN__
+   10       | __DIGIT__
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'\n' (10) 1
+error (256)
+__PLUS__ (258) 2
+__MINUS__ (259) 3 4
+__MULT__ (260) 6
+__DIV__ (261) 7
+__LPAREN__ (262) 9
+__RPAREN__ (263) 9
+__DIGIT__ (264) 10
+UMINUS (265)
+
+
+Nonterminals, with rules where they appear
+
+$accept (12)
+    on left: 0
+line (13)
+    on left: 1, on right: 0
+expr (14)
+    on left: 2 3 4 5, on right: 1 2 3 9
+term (15)
+    on left: 6 7 8, on right: 2 3 4 5 6 7
+factor (16)
+    on left: 9 10, on right: 6 7 8
+
+
+state 0
+
+    0 $accept: . line $end
+
+    __MINUS__   shift, and go to state 1
+    __LPAREN__  shift, and go to state 2
+    __DIGIT__   shift, and go to state 3
+
+    line    go to state 4
+    expr    go to state 5
+    term    go to state 6
+    factor  go to state 7
+
+
+state 1
+
+    4 expr: __MINUS__ . term
+
+    __LPAREN__  shift, and go to state 2
+    __DIGIT__   shift, and go to state 3
+
+    term    go to state 8
+    factor  go to state 7
+
+
+state 2
+
+    9 factor: __LPAREN__ . expr __RPAREN__
+
+    __MINUS__   shift, and go to state 1
+    __LPAREN__  shift, and go to state 2
+    __DIGIT__   shift, and go to state 3
+
+    expr    go to state 9
+    term    go to state 6
+    factor  go to state 7
+
+
+state 3
+
+   10 factor: __DIGIT__ .
+
+    $default  reduce using rule 10 (factor)
+
+
+state 4
+
+    0 $accept: line . $end
+
+    $end  shift, and go to state 10
+
+
+state 5
+
+    1 line: expr . '\n'
+    2 expr: expr . __PLUS__ term
+    3     | expr . __MINUS__ term
+
+    __PLUS__   shift, and go to state 11
+    __MINUS__  shift, and go to state 12
+    '\n'       shift, and go to state 13
+
+
+state 6
+
+    5 expr: term .
+    6 term: term . __MULT__ factor
+    7     | term . __DIV__ factor
+
+    __MULT__  shift, and go to state 14
+    __DIV__   shift, and go to state 15
+
+    $default  reduce using rule 5 (expr)
+
+
+state 7
+
+    8 term: factor .
+
+    $default  reduce using rule 8 (term)
+
+
+state 8
+
+    4 expr: __MINUS__ term .
+    6 term: term . __MULT__ factor
+    7     | term . __DIV__ factor
+
+    __MULT__  shift, and go to state 14
+    __DIV__   shift, and go to state 15
+
+    $default  reduce using rule 4 (expr)
+
+
+state 9
+
+    2 expr: expr . __PLUS__ term
+    3     | expr . __MINUS__ term
+    9 factor: __LPAREN__ expr . __RPAREN__
+
+    __PLUS__    shift, and go to state 11
+    __MINUS__   shift, and go to state 12
+    __RPAREN__  shift, and go to state 16
+
+
+state 10
+
+    0 $accept: line $end .
+
+    $default  accept
+
+
+state 11
+
+    2 expr: expr __PLUS__ . term
+
+    __LPAREN__  shift, and go to state 2
+    __DIGIT__   shift, and go to state 3
+
+    term    go to state 17
+    factor  go to state 7
+
+
+state 12
+
+    3 expr: expr __MINUS__ . term
+
+    __LPAREN__  shift, and go to state 2
+    __DIGIT__   shift, and go to state 3
+
+    term    go to state 18
+    factor  go to state 7
+
+
+state 13
+
+    1 line: expr '\n' .
+
+    $default  reduce using rule 1 (line)
+
+
+state 14
+
+    6 term: term __MULT__ . factor
+
+    __LPAREN__  shift, and go to state 2
+    __DIGIT__   shift, and go to state 3
+
+    factor  go to state 19
+
+
+state 15
+
+    7 term: term __DIV__ . factor
+
+    __LPAREN__  shift, and go to state 2
+    __DIGIT__   shift, and go to state 3
+
+    factor  go to state 20
+
+
+state 16
+
+    9 factor: __LPAREN__ expr __RPAREN__ .
+
+    $default  reduce using rule 9 (factor)
+
+
+state 17
+
+    2 expr: expr __PLUS__ term .
+    6 term: term . __MULT__ factor
+    7     | term . __DIV__ factor
+
+    __MULT__  shift, and go to state 14
+    __DIV__   shift, and go to state 15
+
+    $default  reduce using rule 2 (expr)
+
+
+state 18
+
+    3 expr: expr __MINUS__ term .
+    6 term: term . __MULT__ factor
+    7     | term . __DIV__ factor
+
+    __MULT__  shift, and go to state 14
+    __DIV__   shift, and go to state 15
+
+    $default  reduce using rule 3 (expr)
+
+
+state 19
+
+    6 term: term __MULT__ factor .
+
+    $default  reduce using rule 6 (term)
+
+
+state 20
+
+    7 term: term __DIV__ factor .
+
+    $default  reduce using rule 7 (term)
