@@ -2,7 +2,9 @@
 
 **10진수**로 이루어진 산술 표현식을 입력 받아 해당 표현식의 결과를 계산하고, 이를 사용자가 지정한 **n진수**로 변환하여 출력하는 미니 컴파일러
 
-## Tokens, Lexemes, Patterns
+## Top-down Parsing
+
+### Tokens, Lexemes, Patterns
 
 | **Token** | **Sample Lexemes** | **Pattern** |
 |:-----:|:-----:|:-----:|
@@ -15,9 +17,7 @@
 | DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
 | NUM | 2, 8, 16 | The natural number value entered by the user. |
 
-## Context-Free Grammar
-
-### Top-down Parsing
+### Context-Free Grammar
 
 E -> E+T | E-T | T
 
@@ -37,18 +37,15 @@ T' -> *FT' | /FT' | ε
 
 F -> (E) | digit
 
-### Bottom-up Parsing
+## Bottom-up Parsing
 
-E -> E+E
+### Tokens, Lexemes, Patterns
 
-E -> E-E
+| **Token** | **Sample Lexemes** | **Pattern** |
+| DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
+| NUM | 2, 8, 16 | The natural number value entered by the user. |
 
-E -> E*E
+### Context-Free Grammar
 
-E -> E/E
+E -> E+E | E-E | E*E | E/E | (E) | -E | digit
 
-E -> (E)
-
-E -> digit
-
-- **Shift-Reduce Conflict 발생** 

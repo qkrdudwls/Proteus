@@ -2,22 +2,23 @@
     #define YYDEBUG 1
     #include <stdio.h>
     #include <stdlib.h>
+    #include <ctype.h>
 
     extern int yylex();
     extern void yyerror(const char *s);
+    int yylval;
 
 %}
 %start line
 
 %token __DIGIT__ 
 
-
 %left '-' '+'
 %left '*' '/' 
 %right UMINUS
 
 %%
-line : expr '\n' { printf("Result: %d\n", $1); }
+line : expr '\n' { printf("Result: %d\n", $1); return 0; }
      ;
 
 expr : expr '+' expr { $$ = $1 + $3; }
@@ -31,17 +32,8 @@ expr : expr '+' expr { $$ = $1 + $3; }
 %%
 
 void yyerror(const char *s){
-    fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "Error: %s at token '%c'\n", s, yychar);
     exit(1);
-}
-
-int yylex(){
-    int c = getchar();
-    if(isdigit(c)){
-        yylval = c - '0';
-        return __DIGIT__;
-    }
-    return c;
 }
 
 int main() {
