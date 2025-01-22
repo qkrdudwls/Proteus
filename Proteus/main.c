@@ -26,7 +26,18 @@ int main(void){
         if(strcmp(input, "exit\n") == 0){
             break;
         }
+        
+        printf("\n");
+        printf("----------------------\n");
+        printf("Enter the base N.\nN is greater than or equal to 2 and less than or equal to 36.The default value is 2.\n");
+        printf("Enter N: ");
 
+        if(scanf("%d", &N) != 1){
+            printf("Invalid input for base N.\n");
+            while(getchar() != '\n');
+            continue;
+        }
+        
         while(getchar() != '\n');
 
         buffer = yy_scan_string(input);
@@ -34,16 +45,7 @@ int main(void){
         yy_delete_buffer(buffer);
 
         if(status == 0){
-            printf("\n");
-            printf("----------------------\n");
-            printf("Enter the base N.\nN is greater than or equal to 2 and less than or equal to 36.The default value is 2.\n");
-            printf("Enter N: ");
-            
-            if(scanf("%d", &N) != 1){
-                printf("Invalid input for base N.\n");
-                while(getchar() != '\n');
-                continue;
-            }
+
 
             convertResult(yylval, N);
         }else{
