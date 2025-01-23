@@ -29,6 +29,7 @@ int main(void){
         
         printf("\n");
         printf("----------------------\n");
+        printf("\n");
         printf("Enter the base N.\nN is greater than or equal to 2 and less than or equal to 36.The default value is 2.\n");
         printf("Enter N: ");
 
