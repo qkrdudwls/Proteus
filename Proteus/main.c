@@ -10,6 +10,7 @@ void yyerror(const char *s){
 int main(void){
     char input[256];
     int status;
+    int result;
     int N = 2;
     YY_BUFFER_STATE buffer = NULL;
 
@@ -46,9 +47,8 @@ int main(void){
         yy_delete_buffer(buffer);
 
         if(status == 0){
-
-
-            convertResult(yylval, N);
+            result = yylval;
+            convertResult(result, N);
         }else{
             printf("Error parsing expression\n");
         }
