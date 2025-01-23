@@ -15,7 +15,7 @@
 %right UMINUS
 
 %%
-line : expr '\n' { printf("Original Result: %d\n", $1); return 0; }
+line : expr '\n' { printf("Original Result: %d\n", $1); }
      ;
 
 expr : expr '+' expr { $$ = $1 + $3; }
