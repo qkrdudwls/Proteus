@@ -15,7 +15,6 @@
 | LPAREN | ( | ( |
 | RPAREN | ) | ) |
 | DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
-| NUM | 2, 8, 16 | The natural number value entered by the user. |
 
 ### Context-Free Grammar
 
@@ -44,7 +43,7 @@ F -> (E) | digit
 | **Token** | **Sample Lexemes** | **Pattern** |
 |:-----:|:-----:|:-----:|
 | DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
-| NUM | 2, 8, 16 | The natural number value entered by the user. |
+
 
 ### Context-Free Grammar
 
