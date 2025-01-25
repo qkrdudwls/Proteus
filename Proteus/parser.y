@@ -3,8 +3,6 @@
     #include <stdlib.h>
     #include <ctype.h>
     #include "compiler.h"
-
-
 %}
 %start line
 
