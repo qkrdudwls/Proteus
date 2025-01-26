@@ -20,7 +20,7 @@ int main(void){
         printf("Enter an expression: ");
         fgets(input, 256, stdin);
 
-        if(!input){
+        if(input[0] == '\n'){
             printf("Error reading input\n");
             return 1;
         }
