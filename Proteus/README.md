@@ -29,6 +29,15 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 | **Token** | **Sample Lexemes** | **Pattern** |
 |:-----:|:-----:|:-----:|
 | DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
+| + | + | Addition operator. |
+| - | - | Subtraction operator. |
+| * | * | Multiplication operator. |
+| / | / | Division operator. |
+| ( | ( | Left parenthesis for grouping expressions. |
+| ) | ) | Right parenthesis for grouping expressions. |
+| \n | \n | End of the line. |
+| [\t]+ | [\t]+ | Spaces or tabs (ignored). |
+| . | Any other character | Used for invalid characters. |
 
 ### 📜 Context-Free Grammar
 
