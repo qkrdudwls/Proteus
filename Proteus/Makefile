@@ -7,7 +7,9 @@ proteus-debug: parser flex main.c util.c
 	gdb proteus
 parser: parser.y
 	bison -d parser.y
-flex: lexer.l
+parsing-table: parser.y
+	bison -d -v parser.y 
+lexer: lexer.l
 	flex lexer.l
 clean:
 	rm -f proteus parser.tab.c parser.tab.h lex.yy.c
