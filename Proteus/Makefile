@@ -1,5 +1,5 @@
 proteus-gcc: parser lexer main.c baseConversion.c
-	gcc -o proteus parser.tab.c lex.yy.c main.c 
+	gcc -o proteus parser.tab.c lex.yy.c main.c baseConversion.c
 proteus-clang: parser lexer main.c baseConversion.c
 	clang -o proteus parser.tab.c lex.yy.c main.c baseConversion.c
 proteus-debug: parser lexer main.c baseConversion.c
