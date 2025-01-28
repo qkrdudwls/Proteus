@@ -1,13 +1,12 @@
-# Proteus
+# Proteus 2.0
 
-**10진수**로 이루어진 산술 표현식을 입력 받아 해당 표현식의 결과를 계산하고, 이를 사용자가 지정한 **n진수**로 변환하여 출력하는 미니 컴파일러
+**산술 연산** 및 **진법 변환**, **표기법 변환** 기능을 제공하는 미니 컴파일러
 
 ## 🛠️ Tools
 
 - Bison
 - Flex
-- Clang
-- LLVM
+- Clang & LLVM
 - GCC
 
 ## 🌟 Features
@@ -20,6 +19,10 @@
 
 사용자가 지정한 **n진수(2~36)**로 결과를 반환하여 출력
 
+### 🔄 Notation Conversion
+
+Inorder(중위)로 입력된 산술 표현식을 Preorder(전위)와 Postorder(후위)로 변환
+
 ### 🎭 Lookahead LR Parsing
 
 Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 LALR Parsing 
@@ -28,20 +31,22 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 
 | **Token** | **Sample Lexemes** | **Pattern** |
 |:-----:|:-----:|:-----:|
-| DIGIT | 1, 2, 3 | Numbers present in arithmetic expressions. |
-| + | + | Addition operator. |
-| - | - | Subtraction operator. |
-| * | * | Multiplication operator. |
-| / | / | Division operator. |
-| ( | ( | Left parenthesis for grouping expressions. |
-| ) | ) | Right parenthesis for grouping expressions. |
-| \n | \n | End of the line. |
+| `__DIGIT__` | 1, 2, 3 | Numbers present in arithmetic expressions. |
+| `__PLUS__` | + | Addition operator. |
+| `__MINUS__` | - | Subtraction operator. |
+| `__MULT__` | * | Multiplication operator. |
+| `__DIV__` | / | Division operator. |
+| `__EXP__` | ^ | Square operator. |
+| `__MOD__` | % | Remainder operator. |
+| `__LPAREN__` | ( | Left parenthesis for grouping expressions. |
+| `__RPAREN__` | ) | Right parenthesis for grouping expressions. |
+| `__NEWLINE__` | \n | End of the line. |
 | [\t]+ | [\t]+ | Spaces or tabs (ignored). |
 | . | Any other character | Used for invalid characters. |
 
 ### 📜 Context-Free Grammar
 
-E -> E+E | E-E | E*E | E/E | (E) | -E | digit
+E -> E + E | E - E | E * E | E / E | E ^ E | E % E | (E) | -E | digit
 
 ## 🚀 Build & Run
 
