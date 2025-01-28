@@ -9,6 +9,8 @@
 "-" {return __MINUS__;}
 "*" {return __MULT__;}
 "/" {return __DIV__;}
+"^" {return __EXP__;}
+"%" {return __MOD__;}
 "(" {return __LPAREN__;}
 ")" {return __RPAREN__;}
 [ \t]+ {}
