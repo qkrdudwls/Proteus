@@ -1,8 +1,8 @@
-proteus-gcc: parser flex main.c baseConversion.c
+proteus-gcc: parser lexer main.c baseConversion.c
 	gcc -o proteus parser.tab.c lex.yy.c main.c 
-proteus-clang: parser flex main.c baseConversion.c
+proteus-clang: parser lexer main.c baseConversion.c
 	clang -o proteus parser.tab.c lex.yy.c main.c baseConversion.c
-proteus-debug: parser flex main.c baseConversion.c
+proteus-debug: parser lexer main.c baseConversion.c
 	gcc -g -o proteus parser.tab.c lex.yy.c main.c baseConversion.c
 	gdb proteus
 parser: parser.y
