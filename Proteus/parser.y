@@ -7,7 +7,7 @@
 %}
 %start line
 
-%token __DIGIT__ __PLUS__ __MINUS__ __MULT__ __DIV__ __LPAREN__ __RPAREN__ __NEWLINE__
+%token __DIGIT__ __PLUS__ __MINUS__ __MULT__ __DIV__ __EXP__ __MOD__ __LPAREN__ __RPAREN__ __NEWLINE__
 
 %left __PLUS__ __MINUS__
 %left __MULT__ __DIV__ __MOD__
