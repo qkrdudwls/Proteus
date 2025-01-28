@@ -5,14 +5,14 @@
 
 %%
 [0-9]+ {yylval=atoi(yytext); return __DIGIT__;}
-"+" {return '+';}
-"-" {return '-';}
-"*" {return '*';}
-"/" {return '/';}
-"(" {return '(';}
-")" {return ')';}
+"+" {return __PLUS__;}
+"-" {return __MINUS__;}
+"*" {return __MULT__;}
+"/" {return __DIV__;}
+"(" {return __LPAREN__;}
+")" {return __RPAREN__;}
 [ \t]+ {}
-\n {return '\n';} 
+\n {return __NEWLINE__;} 
 . {printf("Error: %c\n", yytext[0]); exit(1);}
 %%
 
