@@ -13,7 +13,7 @@
 
 ### 🧮 Arithmetic Expression Evaluation
 
-지원하는 연산: '+', '-', '*', '/' 및 괄호 '()'를 통한 표현식 계산 
+지원하는 연산: '+', '-', '*', '/', '^', '%' 및 괄호 '()'를 통한 표현식 계산 
 
 ### 🔢 Custom Base Conversion
 
