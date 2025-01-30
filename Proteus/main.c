@@ -48,7 +48,7 @@ int main(void){
 
         if(status == 0){
             result = yylval;
-            convertResult(result, N);
+            convertBase(result, N);
         }else{
             printf("Error parsing expression\n");
         }
