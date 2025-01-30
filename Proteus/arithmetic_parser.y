@@ -1,31 +1,21 @@
 %{
-    #include "notation.h"
     #include <math.h>
     #include <ctype.h>
     #include "parser.h"
 %}
 
-%union {
-    int integer;
-    char *string;
-    Node *node;
-}
-
 %start input
 
-%token <integer> __DIGIT__
-%token __PLUS__ __MINUS__ __MULT__ __DIV__ __EXP__ __MOD__ __LPAREN__ __RPAREN__ __NEWLINE__
+%token __DIGIT__ __PLUS__ __MINUS__ __MULT__ __DIV__ __EXP__ __MOD__ __LPAREN__ __RPAREN__ __NEWLINE__
 
 %left __PLUS__ __MINUS__
 %left __MULT__ __DIV__ __MOD__
 %right __EXP__
 %precedence UMINUS
 
-%type <integer> input expr
-
 %%
 
-input : expr __NEWLINE__ { printf("Original Result: %d\n", $1); yylval.integer = $1; }
+input : expr __NEWLINE__ { printf("Original Result: %d\n", $1); yylval = $1; }
      ;
 
 expr : expr __PLUS__ expr { $$ = $1 + $3; }

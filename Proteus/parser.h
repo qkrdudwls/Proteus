@@ -1,9 +1,11 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <stdio.h>
+
 extern int yylex();
 extern void yyerror(const char *s);
-//extern int yylval;
+extern int yylval;
 
 typedef struct yy_buffer_state *YY_BUFFER_STATE;
 extern YY_BUFFER_STATE yy_scan_string(const char *str);

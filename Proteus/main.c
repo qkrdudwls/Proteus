@@ -1,8 +1,6 @@
 #include "util.h"
 #include "parser.h"
 #include "arithmetic_parser.tab.h"
-#include "notation_parser.tab.h"
-#include "notation.h"
 
 int mode;
 
@@ -17,7 +15,7 @@ int main(void){
     int command;
     int N = 2;
     YY_BUFFER_STATE buffer = NULL;
-    Node *resultNode = NULL;
+    //Node *resultNode = NULL;
 
     while(1){
         command = 0;
@@ -68,7 +66,7 @@ int main(void){
                 yy_delete_buffer(buffer);
 
                 if(status == 0){
-                    result = yylval.integer;
+                    result = yylval;
                     convertBase(result, N);
                 }else{
                     printf("Error parsing expression\n");
@@ -95,8 +93,8 @@ int main(void){
                     break;
                 }
 
-                resultNode = (Node*)yylval.node;
-
+                //resultNode = (Node*)yylval;
+                /*
                 if(command == 1){
                     printf("Prefix Notation: ");
                     preorder(resultNode);
@@ -105,7 +103,7 @@ int main(void){
                     postorder(resultNode);
                 }else{
                     printf("Invalid Command\n");
-                }
+                }*/
                 break;
 
             default:
