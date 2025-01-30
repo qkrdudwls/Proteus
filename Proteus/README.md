@@ -50,7 +50,7 @@ E -> E + E | E - E | E * E | E / E | E ^ E | E % E | (E) | -E | digit
 
 ## 🚀 Build & Run
 
-### 명령어 
+### Command 
 
 #### GCC 컴파일러를 이용하여 실행 (기본)
 
@@ -64,13 +64,13 @@ E -> E + E | E - E | E * E | E / E | E ^ E | E % E | (E) | -E | digit
 
 2. `.\proteus.exe`
 
-#### Parsing Table 생성
+#### Arithmetic Parsing Table 생성
 
-`make parsing-table`
+`make arithmetic-parsing-table`
 
-#### Parser 셍성
+#### Arithmetic Parser 셍성
 
-`make parser`
+`make arithmetic_parser`
 
 #### Lexer 생성
 
