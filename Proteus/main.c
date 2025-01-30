@@ -1,7 +1,7 @@
 #include <string.h>
 #include "util.h"
 #include "compiler.h"
-#include "parser.tab.h"
+#include "arithmetic_parser.tab.h"
 
 void yyerror(const char *s){
     fprintf(stderr, "Error: %s\n", s);
