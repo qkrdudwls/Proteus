@@ -1,6 +1,6 @@
 %{
     #include "compiler.h"
-    #include "parser.tab.h"
+    #include "arithmetic_parser.tab.h"
 %}
 
 %%
