@@ -1,14 +1,8 @@
 %{
+    #include "notation.h"
     #include <math.h>
     #include <ctype.h>
     #include "parser.h"
-
-    // Node 구조체 재정의
-    typedef struct Node {
-        char *value;
-        struct Node *left;
-        struct Node *right;
-    } Node;
 %}
 
 %union {
@@ -19,7 +13,7 @@
 
 %start input
 
-%token<integer> __DIGIT__
+%token <integer> __DIGIT__
 %token __PLUS__ __MINUS__ __MULT__ __DIV__ __EXP__ __MOD__ __LPAREN__ __RPAREN__ __NEWLINE__
 
 %left __PLUS__ __MINUS__
@@ -27,8 +21,7 @@
 %right __EXP__
 %precedence UMINUS
 
-%type <integer> input
-%type <integer> expr
+%type <integer> input expr
 
 %%
 

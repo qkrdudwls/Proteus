@@ -1,4 +1,4 @@
-#include "tree.h"
+#include "notation.h"
 
 Node* create_node(Node *left, Node *right, char *value) {
     Node *node = (Node*)malloc(sizeof(Node));

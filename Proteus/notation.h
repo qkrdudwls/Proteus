@@ -1,5 +1,5 @@
-#ifndef TREE_H
-#define TREE_H
+#ifndef NOTATION_H
+#define NOTATION_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,8 +11,7 @@ typedef struct Node {
     struct Node *right;
 } Node;
 
-
-typedef union{
+typedef union {
     int integer;
     char *string;
     Node *node;

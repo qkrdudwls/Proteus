@@ -2,7 +2,7 @@
     #include "parser.h"
     #include "arithmetic_parser.tab.h"
     #include "notation_parser.tab.h"
-    #include "tree.h"
+    #include "notation.h"
     extern int mode;
 %}
 
