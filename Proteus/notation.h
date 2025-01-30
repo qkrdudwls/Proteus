@@ -6,20 +6,12 @@
 #include <string.h>
 
 typedef struct Node {
-    char *value;
+    int token;
     struct Node *left;
     struct Node *right;
 } Node;
 
-typedef union {
-    int integer;
-    char *string;
-    Node *node;
-} C_YYSTYPE;
-
-#define YYSTYPE C_YYSTYPE
-
-extern Node* create_node(Node *left, Node *right, char *value);
+extern Node* createNode(int token, Node *left, Node *right);
 extern void preorder(Node *node);
 extern void postorder(Node *node);
 extern void free_tree(Node *node);

@@ -1,43 +1,58 @@
 %{
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include "parser.h"
     #include "notation.h"
+    #include <stdio.h>
 
-    Node *root;
+    extern int yylex();
+    int yyerror(char *s);
+    extern char* yytext;
+
+    Node* root;
 %}
 
 %union {
-    int integer;
-    char *string;
-    Node *node;
+    int ival;
+    Node* node;
 }
 
-%start input
+%token <ival> __DIGIT__ __PLUS__ __MINUS__ __MULT__ __DIV__ __EXP__ __MOD__ __LPAREN__ __RPAREN__ __NEWLINE__
 
-%token <string> __DIGIT__
-%token __PLUS__ __MINUS__ __MULT__ __DIV__ __EXP__ __MOD__ __LPAREN__ __RPAREN__ __NEWLINE__
-
-%left __PLUS__ __MINUS__
-%left __MULT__ __DIV__ __MOD__
-%right __EXP__
-%precedence UMINUS
-
-%type <node> input
-%type <node> expr
+%type <node> expression term factor primary
 
 %%
-input : expr __NEWLINE__ { root = $1; }
+notation:
+    expression __NEWLINE__ { root = $1; postorder(root); free_tree(root); }
     ;
 
-expr: __DIGIT__ { $$ = create_node(NULL, NULL, $1); }
-    | expr __PLUS__ expr { $$ = create_node($1, $3, "+"); }
-    | expr __MINUS__ expr { $$ = create_node($1, $3, "-"); }
-    | expr __MULT__ expr { $$ = create_node($1, $3, "*"); }
-    | expr __DIV__ expr { $$ = create_node($1, $3, "/"); }
-    | expr __EXP__ expr { $$ = create_node($1, $3, "^"); }
-    | expr __MOD__ expr { $$ = create_node($1, $3, "%"); }
-    | __LPAREN__ expr __RPAREN__ { $$ = $2; }
-    | __MINUS__ expr %prec UMINUS { $$ = create_node(NULL, $2, "-"); }
+expression:
+    term                    { $$ = $1; }
+    | expression __PLUS__ term   { $$ = createNode(__PLUS__, $1, $3); }
+    | expression __MINUS__ term  { $$ = createNode(__MINUS__, $1, $3); }
     ;
+
+term:
+    factor                  { $$ = $1; }
+    | term __MULT__ factor  { $$ = createNode(__MULT__, $1, $3); }
+    | term __DIV__ factor   { $$ = createNode(__DIV__, $1, $3); }
+    | term __MOD__ factor   { $$ = createNode(__MOD__, $1, $3); }
+    ;
+
+factor:
+    primary                 { $$ = $1; }
+    | primary __EXP__ factor   { $$ = createNode(__EXP__, $1, $3); }
+    ;
+
+primary:
+    __DIGIT__               { $$ = createNode(atoi(yytext), NULL, NULL); }
+    | __LPAREN__ expression __RPAREN__ { $$ = $2; }
+    ;
+
 %%
+int yyerror(char *s) {
+    fprintf(stderr, "Error: %s\n", s);
+    return 0;
+}
+
+int main() {
+    yyparse();
+    return 0;
+}

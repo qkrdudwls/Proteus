@@ -1,6 +1,7 @@
 %{
     #include "parser.h"
     #include "arithmetic_parser.tab.h"
+    #include "notation_parser.tab.h"
     extern int mode;
 %}
 
