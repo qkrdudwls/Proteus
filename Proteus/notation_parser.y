@@ -2,7 +2,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include "parser.h"
-    #include "util.h"
+    #include "tree.h"
 
     Node *root;
 %}
