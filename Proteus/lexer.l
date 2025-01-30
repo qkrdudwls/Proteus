@@ -1,5 +1,5 @@
 %{
-    #include "compiler.h"
+    #include "parser.h"
     #include "arithmetic_parser.tab.h"
 %}
 

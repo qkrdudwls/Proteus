@@ -1,5 +1,5 @@
-#ifndef COMPILER_H
-#define COMPILER_H
+#ifndef PARSER_H
+#define PARSER_H
 
 extern int yylex();
 extern void yyerror(const char *s);

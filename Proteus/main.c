@@ -1,6 +1,6 @@
 #include <string.h>
 #include "util.h"
-#include "compiler.h"
+#include "parser.h"
 #include "arithmetic_parser.tab.h"
 
 void yyerror(const char *s){

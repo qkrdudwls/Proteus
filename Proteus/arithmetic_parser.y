@@ -3,7 +3,7 @@
     #include <stdlib.h>
     #include <math.h>
     #include <ctype.h>
-    #include "compiler.h"
+    #include "parser.h"
 %}
 %start line
 
