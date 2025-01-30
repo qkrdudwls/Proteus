@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void convertResult(int num, int N){
+void convertBase(int num, int N){
     const char *digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char result[65];
     char *ptr = &result[64];

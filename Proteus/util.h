@@ -3,6 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern void convertResult(int num, int N);
+extern void convertBase(int num, int N);
 
 #endif
