@@ -41,8 +41,8 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 | `__LPAREN__` | ( | Left parenthesis for grouping expressions. |
 | `__RPAREN__` | ) | Right parenthesis for grouping expressions. |
 | `__NEWLINE__` | \n | End of the line. |
-| [\t]+ | [\t]+ | Spaces or tabs (ignored). |
-| . | Any other character | Used for invalid characters. |
+| `[\t]+` | [\t]+ | Spaces or tabs (ignored). |
+| `.` | Any other character | Used for invalid characters. |
 
 ### 📜 Context-Free Grammar
 
