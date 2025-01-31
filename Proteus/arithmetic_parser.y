@@ -3,7 +3,7 @@
     #include <ctype.h>
     #include "parser.h"
 
-    extern int calculation_mode;
+    extern int arithmetic_mode;
 %}
 
 %define api.prefix {arithmetic_}
@@ -19,7 +19,7 @@
 
 %%
 
-input : expr ARITHMETIC_NEWLINE { if(calculation_mode == 0) printf("Original Result: %d\n", $1); else printf("Result: %d\n", $1); yylval = $1; }
+input : expr ARITHMETIC_NEWLINE { if(arithmetic_mode == 0) printf("Original Result: %d\n", $1); else printf("Result: %d\n", $1); yylval = $1; }
      ;
 
 expr : expr ARITHMETIC_PLUS expr { $$ = $1 + $3; }

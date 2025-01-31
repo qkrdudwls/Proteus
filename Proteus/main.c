@@ -5,7 +5,7 @@
 #include "notation_parser.tab.h"
 
 int mode;
-int calculation_mode;
+int arithmetic_mode;
 int notation_mode;
 
 void yyerror(const char *s){
@@ -22,6 +22,7 @@ int main(void){
 
     while(1){
         mode = 0;
+        arithmetic_mode = 0;
         command = 0;
 
         printf("------ Proteus ------\n");
@@ -54,6 +55,8 @@ int main(void){
 
         switch(command){
             case 1:
+                mode = 1;
+                arithmetic_mode = 0;
                 printf("----------------------\n");
                 printf("\n");
                 printf("Enter the base N.\nN is greater than or equal to 2 and less than or equal to 36.The default value is 2.\n");
@@ -78,6 +81,8 @@ int main(void){
                 break;
             
             case 2:
+                mode = 2;
+                notation_mode = 0;
                 printf("----------------------\n");
                 printf("1. Infix to Prefix\n");
                 printf("2. Infix to Postfix\n");
@@ -88,9 +93,9 @@ int main(void){
                 while(getchar() != '\n');
 
                 if(command == 1){
-                    mode = 1;
+                    notation_mode = 1;
                 } else if(command == 2){
-                    mode = 2;
+                    notation_mode = 2;
                 } else {
                     printf("Invalid Command\n");
                     continue;
