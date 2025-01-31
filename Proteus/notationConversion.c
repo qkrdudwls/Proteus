@@ -9,49 +9,8 @@ Node* createNode(int token, Node *left, Node *right){
     return node;
 }
 
-void preorder(Node *node){
-    if(node != NULL){
-        switch(node->token){
-            case __PLUS__:
-                printf("+ ");
-                break;
-            case __MINUS__:
-                printf("- ");
-                break;
-            case __MULT__:
-                printf("* ");
-                break;
-            case __DIV__:
-                printf("/ ");
-                break;
-            case __MOD__:
-                printf("%% ");
-                break;
-            case __EXP__:
-                printf("^ ");
-                break;
-            case __LPAREN__:
-                printf("( ");
-                break;
-            case __RPAREN__:    
-                printf(") ");
-                break;
-            default:
-                printf("%d ", node->token);
-                break;
-        }
-        preorder(node->left);
-        preorder(node->right);
-    }else{
-        return;
-    }
-}
-
-void postorder(Node *node){
-    if(node != NULL){
-    postorder(node->left);
-    postorder(node->right);
-    switch(node->token){
+void print_token(int token){
+    switch(token){
         case __PLUS__:
             printf("+ ");
             break;
@@ -77,10 +36,26 @@ void postorder(Node *node){
             printf(") ");
             break;
         default:
-            printf("%d ", node->token);
+            printf("%d ", token);
             break;
-        }
+    }
+}
 
+void preorder(Node *node){
+    if(node != NULL){
+        print_token(node->token);
+        preorder(node->left);
+        preorder(node->right);
+    }else{
+        return;
+    }
+}
+
+void postorder(Node *node){
+    if(node != NULL){
+    postorder(node->left);
+    postorder(node->right);
+    print_token(node->token);
     }else{
         return;
     }

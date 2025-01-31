@@ -12,6 +12,7 @@ typedef struct Node {
 } Node;
 
 extern Node* createNode(int token, Node *left, Node *right);
+extern void print_token(int token);
 extern void preorder(Node *node);
 extern void postorder(Node *node);
 extern void free_tree(Node *node);
