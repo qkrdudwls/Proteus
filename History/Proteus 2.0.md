@@ -21,7 +21,7 @@
 
 ### 🔄 Notation Conversion
 
-Inorder(중위)로 입력된 산술 표현식을 **Preorder(전위)**와 **Postorder(후위)**로 변환
+Inorder(중위)로 입력된 산술 표현식을 **Preorder**(전위)와 **Postorder**(후위)로 변환
 
 ### 🎭 Lookahead LR Parsing
 
