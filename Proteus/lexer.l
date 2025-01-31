@@ -4,6 +4,10 @@
     #include "notation_parser.tab.h"
 
     extern int mode;
+    int arithmetic_lex();
+    int notation_lex();
+    int arithmetic_error(char* msg);
+    int notation_error(char* msg);
 %}
 
 %%
@@ -58,4 +62,22 @@
 
 int yywrap(){
     return 1;
+}
+
+int arithmetic_lex(){
+    return yylex();
+}
+
+int notation_lex(){
+    return yylex();
+}
+
+int arithmetic_error(char* msg){
+    fprintf(stderr, "Error: %s\n", msg);
+    exit(1);
+}
+
+int notation_error(char* msg){
+    fprintf(stderr, "Error: %s\n", msg);
+    exit(1);
 }
