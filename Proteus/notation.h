@@ -7,11 +7,12 @@
 
 typedef struct Node {
     int token;
+    int is_operator;
     struct Node *left;
     struct Node *right;
 } Node;
 
-extern Node* createNode(int token, Node *left, Node *right);
+extern Node* createNode(int token, int is_operator, Node *left, Node *right);
 extern Node* createLeaf(int token);
 extern void preorder(Node *node);
 extern void postorder(Node *node);

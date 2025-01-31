@@ -1,48 +1,53 @@
 #include "notation.h"
 #include "notation_parser.tab.h"
 
-Node* createNode(int token, Node *left, Node *right){
+Node* createNode(int token, int is_operator, Node *left, Node *right){
     Node *node = (Node*)malloc(sizeof(Node));
     node->token = token;
+    node->is_operator = is_operator;
     node->left = left;
     node->right = right;
     return node;
 }
 
 Node* createLeaf(int value){
-    return createNode(value, NULL, NULL);
+    return createNode(value, 0, NULL, NULL);
 }
 
 void preorder(Node *node){
     if(node != NULL){
-        switch(node->token){
-            case '+':
-                printf("+ ");
-                break;
-            case '-':
-                printf("- ");
-                break;
-            case '*':
-                printf("* ");
-                break;
-            case '/':
-                printf("/ ");
-                break;
-            case '%':  
-                printf("%% ");
-                break;
-            case '^':
-                printf("^ ");
-                break;
-            case '(':
-                printf("( ");
-                break;
-            case ')':
-                printf(") ");
-                break;
-            default:
-                printf("%d ", node->token); // 숫자를 출력
-                break;
+        if(node->is_operator){
+            switch(node->token){
+                case '+':
+                    printf("+ ");
+                    break;
+                case '-':
+                    printf("- ");
+                    break;
+                case '*':
+                    printf("* ");
+                    break;
+                case '/':
+                    printf("/ ");
+                    break;
+                case '%':  
+                    printf("%% ");
+                    break;
+                case '^':
+                    printf("^ ");
+                    break;
+                case '(':
+                    printf("( ");
+                    break;
+                case ')':
+                    printf(") ");
+                    break;
+                default:
+                    printf("%d ", node->token);
+                    break;
+            }
+        }else{
+            printf("%d ", node->token);
         }
         preorder(node->left);
         preorder(node->right);
@@ -55,34 +60,38 @@ void postorder(Node *node){
     if(node != NULL){
         postorder(node->left);
         postorder(node->right);
-        switch(node->token){
-            case '+':
-                printf("+ ");
-                break;
-            case '-':
-                printf("- ");
-                break;
-            case '*':
-                printf("* ");
-                break;
-            case '/':
-                printf("/ ");
-                break;
-            case '%':  
-                printf("%% ");
-                break;
-            case '^':
-                printf("^ ");
-                break;
-            case '(':
-                printf("( ");
-                break;
-            case ')':
-                printf(") ");
-                break;
-            default:
-                printf("%d ", node->token); // 숫자를 출력
-                break;
+        if(node->is_operator){
+            switch(node->token){
+                case '+':
+                    printf("+ ");
+                    break;
+                case '-':
+                    printf("- ");
+                    break;
+                case '*':
+                    printf("* ");
+                    break;
+                case '/':
+                    printf("/ ");
+                    break;
+                case '%':  
+                    printf("%% ");
+                    break;
+                case '^':
+                    printf("^ ");
+                    break;
+                case '(':
+                    printf("( ");
+                    break;
+                case ')':
+                    printf(") ");
+                    break;
+                default:
+                    printf("%d ", node->token);
+                    break;
+            }
+        }else{
+            printf("%d ", node->token);
         }
     } else {
         return;

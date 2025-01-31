@@ -29,14 +29,14 @@ input:
     ;
 
 expr: 
-    expr NOTATION_PLUS expr { $$ = createNode('+', $1, $3); }
-    | expr NOTATION_MINUS expr { $$ = createNode('-', $1, $3); }
-    | expr NOTATION_MULT expr { $$ = createNode('*', $1, $3); }
-    | expr NOTATION_DIV expr { $$ = createNode('/', $1, $3); }
-    | expr NOTATION_EXP expr { $$ = createNode('^', $1, $3); }
-    | expr NOTATION_MOD expr { $$ = createNode('%', $1, $3); }
+    expr NOTATION_PLUS expr { $$ = createNode('+', 1, $1, $3); }
+    | expr NOTATION_MINUS expr { $$ = createNode('-', 1, $1, $3); }
+    | expr NOTATION_MULT expr { $$ = createNode('*', 1, $1, $3); }
+    | expr NOTATION_DIV expr { $$ = createNode('/', 1, $1, $3); }
+    | expr NOTATION_EXP expr { $$ = createNode('^', 1, $1, $3); }
+    | expr NOTATION_MOD expr { $$ = createNode('%', 1, $1, $3); }
     | NOTATION_LPAREN expr NOTATION_RPAREN { $$ = $2; }
-    | NOTATION_MINUS expr %prec NOTATION_UMINUS { $$ = createNode('u', $2, NULL); }
+    | NOTATION_MINUS expr %prec NOTATION_UMINUS { $$ = createNode('u', 1, $2, NULL); }
     | NOTATION_DIGIT { $$ = createLeaf($1); }
     ;
 %%
