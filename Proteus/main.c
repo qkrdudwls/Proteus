@@ -29,6 +29,7 @@ int main(void){
         printf("1. Arithmetic Expression Evaluation & Base Conversion\n");
         printf("2. Notation Conversion\n");
         printf("3. Exit\n");
+        printf("----------------------\n");
         printf("Enter the Command Number: ");
         scanf("%d", &command);
         printf("\n");
@@ -48,7 +49,7 @@ int main(void){
 
         if(input[0] == '\n'){
             printf("Error reading input\n");
-            return 1;
+            continue;
         }
         
         printf("\n");
@@ -67,7 +68,9 @@ int main(void){
                     while(getchar() != '\n');
                     continue;
                 }
-                
+
+                printf("\n");
+
                 buffer = yy_scan_string(input);
                 status = arithmetic_parse();
                 yy_delete_buffer(buffer);
@@ -108,6 +111,7 @@ int main(void){
                 if(status != 0){
                     printf("Error parsing expression\n");
                 }
+                printf("\n");
                 break;
 
             default:
