@@ -9,41 +9,41 @@ Node* createNode(int token, Node *left, Node *right){
     return node;
 }
 
-void print_token(int token){
-    switch(token){
-        case NOTATION_PLUS:
-            printf("+ ");
-            break;
-        case NOTATION_MINUS:
-            printf("- ");
-            break;
-        case NOTATION_MULT:
-            printf("* ");
-            break;
-        case NOTATION_DIV:
-            printf("/ ");
-            break;
-        case NOTATION_MOD:  
-            printf("%% ");
-            break;
-        case NOTATION_EXP:
-            printf("^ ");
-            break;
-        case NOTATION_LPAREN:
-            printf("( ");
-            break;
-        case NOTATION_RPAREN:
-            printf(") ");
-            break;
-        default:
-            printf("%d ", token);
-            break;
-    }
+Node* createLeaf(int token){
+    return createNode(token, NULL, NULL);
 }
 
 void preorder(Node *node){
     if(node != NULL){
-        print_token(node->token);
+        switch(node->token){
+            case NOTATION_PLUS:
+                printf("+ ");
+                break;
+            case NOTATION_MINUS:
+                printf("- ");
+                break;
+            case NOTATION_MULT:
+                printf("* ");
+                break;
+            case NOTATION_DIV:
+                printf("/ ");
+                break;
+            case NOTATION_MOD:  
+                printf("%% ");
+                break;
+            case NOTATION_EXP:
+                printf("^ ");
+                break;
+            case NOTATION_LPAREN:
+                printf("( ");
+                break;
+            case NOTATION_RPAREN:
+                printf(") ");
+                break;
+            default:
+                printf("%d ", node->token);
+                break;
+        }
         preorder(node->left);
         preorder(node->right);
     }else{
@@ -53,9 +53,37 @@ void preorder(Node *node){
 
 void postorder(Node *node){
     if(node != NULL){
-    postorder(node->left);
-    postorder(node->right);
-    print_token(node->token);
+        postorder(node->left);
+        postorder(node->right);
+        switch(node->token){
+            case NOTATION_PLUS:
+                printf("+ ");
+                break;
+            case NOTATION_MINUS:
+                printf("- ");
+                break;
+            case NOTATION_MULT:
+                printf("* ");
+                break;
+            case NOTATION_DIV:
+                printf("/ ");
+                break;
+            case NOTATION_MOD:  
+                printf("%% ");
+                break;
+            case NOTATION_EXP:
+                printf("^ ");
+                break;
+            case NOTATION_LPAREN:
+                printf("( ");
+                break;
+            case NOTATION_RPAREN:
+                printf(") ");
+                break;
+            default:
+                printf("%d ", node->token);
+                break;
+        }
     }else{
         return;
     }
