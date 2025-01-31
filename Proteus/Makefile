@@ -8,10 +8,10 @@ proteus-debug: arithmetic_parser notation_parser lexer main.c baseConversion.c n
 	gcc -g -o proteus arithmetic_parser.tab.c notation_parser.tab.c lex.yy.c main.c baseConversion.c notationConversion.c
 	gdb proteus
 
-arithmetic_parser: arithmetic_parser.y
+arithmetic-parser: arithmetic_parser.y
 	bison -d arithmetic_parser.y
 
-notation_parser: notation_parser.y
+notation-parser: notation_parser.y
 	bison -d notation_parser.y	
 
 arithmetic-parsing-table: arithmetic_parser.y
