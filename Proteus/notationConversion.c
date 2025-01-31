@@ -9,44 +9,44 @@ Node* createNode(int token, Node *left, Node *right){
     return node;
 }
 
-Node* createLeaf(int token){
-    return createNode(token, NULL, NULL);
+Node* createLeaf(int value){
+    return createNode(value, NULL, NULL);
 }
 
 void preorder(Node *node){
     if(node != NULL){
         switch(node->token){
-            case NOTATION_PLUS:
+            case '+':
                 printf("+ ");
                 break;
-            case NOTATION_MINUS:
+            case '-':
                 printf("- ");
                 break;
-            case NOTATION_MULT:
+            case '*':
                 printf("* ");
                 break;
-            case NOTATION_DIV:
+            case '/':
                 printf("/ ");
                 break;
-            case NOTATION_MOD:  
+            case '%':  
                 printf("%% ");
                 break;
-            case NOTATION_EXP:
+            case '^':
                 printf("^ ");
                 break;
-            case NOTATION_LPAREN:
+            case '(':
                 printf("( ");
                 break;
-            case NOTATION_RPAREN:
+            case ')':
                 printf(") ");
                 break;
             default:
-                printf("%d ", node->token);
+                printf("%d ", node->token); // 숫자를 출력
                 break;
         }
         preorder(node->left);
         preorder(node->right);
-    }else{
+    } else {
         return;
     }
 }
@@ -56,45 +56,45 @@ void postorder(Node *node){
         postorder(node->left);
         postorder(node->right);
         switch(node->token){
-            case NOTATION_PLUS:
+            case '+':
                 printf("+ ");
                 break;
-            case NOTATION_MINUS:
+            case '-':
                 printf("- ");
                 break;
-            case NOTATION_MULT:
+            case '*':
                 printf("* ");
                 break;
-            case NOTATION_DIV:
+            case '/':
                 printf("/ ");
                 break;
-            case NOTATION_MOD:  
+            case '%':  
                 printf("%% ");
                 break;
-            case NOTATION_EXP:
+            case '^':
                 printf("^ ");
                 break;
-            case NOTATION_LPAREN:
+            case '(':
                 printf("( ");
                 break;
-            case NOTATION_RPAREN:
+            case ')':
                 printf(") ");
                 break;
             default:
-                printf("%d ", node->token);
+                printf("%d ", node->token); // 숫자를 출력
                 break;
         }
-    }else{
+    } else {
         return;
     }
 }
 
 void free_tree(Node *node){
     if(node != NULL){
-    free_tree(node->left);
-    free_tree(node->right);
-    free(node);
-    }else{
+        free_tree(node->left);
+        free_tree(node->right);
+        free(node);
+    } else {
         return;
     }
 }
