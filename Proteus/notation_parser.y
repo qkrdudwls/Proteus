@@ -1,58 +1,42 @@
 %{
     #include "notation.h"
-    #include <stdio.h>
+    #include "parser.h"
 
-    extern int yylex();
-    int yyerror(char *s);
+    extern int mode;
     extern char* yytext;
-
     Node* root;
 %}
+
+%define api.prefix {notation_}
 
 %union {
     int ival;
     Node* node;
 }
 
-%token <ival> __DIGIT__ __PLUS__ __MINUS__ __MULT__ __DIV__ __EXP__ __MOD__ __LPAREN__ __RPAREN__ __NEWLINE__
+%token <ival> NOTATION_DIGIT NOTATION_PLUS NOTATION_MINUS NOTATION_MULT NOTATION_DIV NOTATION_EXP NOTATION_MOD NOTATION_LPAREN NOTATION_RPAREN NOTATION_NEWLINE NOTATION_UMINUS
 
-%type <node> expression term factor primary
+%type <node> expr
 
-%%
-notation:
-    expression __NEWLINE__ { root = $1; postorder(root); free_tree(root); }
-    ;
-
-expression:
-    term                    { $$ = $1; }
-    | expression __PLUS__ term   { $$ = createNode(__PLUS__, $1, $3); }
-    | expression __MINUS__ term  { $$ = createNode(__MINUS__, $1, $3); }
-    ;
-
-term:
-    factor                  { $$ = $1; }
-    | term __MULT__ factor  { $$ = createNode(__MULT__, $1, $3); }
-    | term __DIV__ factor   { $$ = createNode(__DIV__, $1, $3); }
-    | term __MOD__ factor   { $$ = createNode(__MOD__, $1, $3); }
-    ;
-
-factor:
-    primary                 { $$ = $1; }
-    | primary __EXP__ factor   { $$ = createNode(__EXP__, $1, $3); }
-    ;
-
-primary:
-    __DIGIT__               { $$ = createNode(atoi(yytext), NULL, NULL); }
-    | __LPAREN__ expression __RPAREN__ { $$ = $2; }
-    ;
+%left NOTATION_PLUS NOTATION_MINUS
+%left NOTATION_MULT NOTATION_DIV NOTATION_MOD
+%right NOTATION_EXP
+%precedence NOTATION_UMINUS
 
 %%
-int yyerror(char *s) {
-    fprintf(stderr, "Error: %s\n", s);
-    return 0;
-}
+input:
+    expr NOTATION_NEWLINE { root = $1; if(mode == 1) preorder(root); else if(mode == 2) postorder(root); free_tree(root); }
+    ;
 
-int main() {
-    yyparse();
-    return 0;
-}
+expr: 
+    expr NOTATION_PLUS expr { $$ = create_node('+', $1, $3); }
+    | expr NOTATION_MINUS expr { $$ = create_node('-', $1, $3); }
+    | expr NOTATION_MULT expr { $$ = create_node('*', $1, $3); }
+    | expr NOTATION_DIV expr { $$ = create_node('/', $1, $3); }
+    | expr NOTATION_EXP expr { $$ = create_node('^', $1, $3); }
+    | expr NOTATION_MOD expr { $$ = create_node('%', $1, $3); }
+    | NOTATION_LPAREN expr NOTATION_RPAREN { $$ = $2; }
+    | NOTATION_MINUS expr %prec NOTATION_UMINUS { $$ = create_node('u', $2, NULL); }
+    | NOTATION_DIGIT { $$ = create_leaf($1); }
+    ;
+%%

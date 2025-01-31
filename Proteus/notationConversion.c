@@ -11,28 +11,28 @@ Node* createNode(int token, Node *left, Node *right){
 
 void print_token(int token){
     switch(token){
-        case __PLUS__:
+        case NOTATION_PLUS:
             printf("+ ");
             break;
-        case __MINUS__:
+        case NOTATION_MINUS:
             printf("- ");
             break;
-        case __MULT__:
+        case NOTATION_MULT:
             printf("* ");
             break;
-        case __DIV__:
+        case NOTATION_DIV:
             printf("/ ");
             break;
-        case __MOD__:
+        case NOTATION_MOD:  
             printf("%% ");
             break;
-        case __EXP__:
+        case NOTATION_EXP:
             printf("^ ");
             break;
-        case __LPAREN__:
+        case NOTATION_LPAREN:
             printf("( ");
             break;
-        case __RPAREN__:    
+        case NOTATION_RPAREN:
             printf(") ");
             break;
         default:

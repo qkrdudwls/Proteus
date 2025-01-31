@@ -1,6 +1,4 @@
 #include "util.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void convertBase(int num, int N){
     const char *digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";

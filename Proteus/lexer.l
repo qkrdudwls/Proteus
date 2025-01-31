@@ -2,21 +2,57 @@
     #include "parser.h"
     #include "arithmetic_parser.tab.h"
     #include "notation_parser.tab.h"
+
     extern int mode;
 %}
 
 %%
-[0-9]+ {yylval = atoi(yytext); return __DIGIT__;}
-"+" {return __PLUS__;}
-"-" {return __MINUS__;}
-"*" {return __MULT__;}
-"/" {return __DIV__;}
-"^" {return __EXP__;}
-"%" {return __MOD__;}
-"(" {return __LPAREN__;}
-")" {return __RPAREN__;}
+[0-9]+ {
+    if(mode == 1){
+        arithmetic_lval = atoi(yytext); 
+        return ARITHMETIC_DIGIT;
+    }else if(mode == 2){
+        notation_lval.ival = atoi(yytext); 
+        return NOTATION_DIGIT;
+    }
+}
+"+" {
+    if(mode == 1) return ARITHMETIC_PLUS;
+    else if(mode == 2) return NOTATION_PLUS;
+}
+"-" {
+    if(mode == 1) return ARITHMETIC_MINUS;
+    else if(mode == 2) return NOTATION_MINUS;
+}
+"*" {
+    if(mode == 1) return ARITHMETIC_MULT;
+    else if(mode == 2) return NOTATION_MULT;
+}
+"/" {
+    if(mode == 1) return ARITHMETIC_DIV;
+    else if(mode == 2) return NOTATION_DIV;
+}
+"^" {
+    if(mode == 1) return ARITHMETIC_EXP;
+    else if(mode == 2) return NOTATION_EXP;
+}
+"%" {
+    if(mode == 1) return ARITHMETIC_MOD;
+    else if(mode == 2) return NOTATION_MOD;
+}
+"(" {
+    if(mode == 1) return ARITHMETIC_LPAREN;
+    else if(mode == 2) return NOTATION_LPAREN;
+}
+")" {
+    if(mode == 1) return ARITHMETIC_RPAREN;
+    else if(mode == 2) return NOTATION_RPAREN;
+}
 [ \t]+ {}
-\n {return __NEWLINE__;} 
+\n {
+    if(mode == 1) return ARITHMETIC_NEWLINE;
+    else if(mode == 2) return NOTATION_NEWLINE;
+}
 . {printf("Error: %c\n", yytext[0]); exit(1);}
 %%
 
