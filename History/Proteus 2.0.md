@@ -13,7 +13,7 @@
 
 ### 🧮 Arithmetic Expression Evaluation
 
-지원하는 연산: '+', '-', '*', '/', '^', '%' 및 괄호 '()'를 통한 표현식 계산 
+지원하는 연산: `+`, `-`, `*`, `/`, `^`, `%` 및 괄호 `()`를 통한 산술 표현식 계산 
 
 ### 🔢 Custom Base Conversion
 
@@ -21,11 +21,11 @@
 
 ### 🔄 Notation Conversion
 
-Inorder(중위)로 입력된 산술 표현식을 Preorder(전위)와 Postorder(후위)로 변환
+Inorder(중위)로 입력된 산술 표현식을 **Preorder(전위)**와 **Postorder(후위)**로 변환
 
 ### 🎭 Lookahead LR Parsing
 
-Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 LALR Parsing 
+Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 **LALR Parsing**
 
 ### 🔑 Tokens, Lexemes, Patterns
 
