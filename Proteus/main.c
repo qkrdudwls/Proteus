@@ -1,8 +1,12 @@
 #include "util.h"
 #include "parser.h"
+#include "notation.h"
 #include "arithmetic_parser.tab.h"
+#include "notation_parser.tab.h"
 
 int mode;
+int calculation_mode;
+int notation_mode;
 
 void yyerror(const char *s){
     fprintf(stderr, "Error: %s\n", s);
@@ -15,10 +19,11 @@ int main(void){
     int command;
     int N = 2;
     YY_BUFFER_STATE buffer = NULL;
-    //Node *resultNode = NULL;
 
     while(1){
+        mode = 0;
         command = 0;
+
         printf("------ Proteus ------\n");
         printf("1. Arithmetic Expression Evaluation & Base Conversion\n");
         printf("2. Notation Conversion\n");
@@ -49,7 +54,6 @@ int main(void){
 
         switch(command){
             case 1:
-                mode = 1;
                 printf("----------------------\n");
                 printf("\n");
                 printf("Enter the base N.\nN is greater than or equal to 2 and less than or equal to 36.The default value is 2.\n");
@@ -62,11 +66,11 @@ int main(void){
                 }
                 
                 buffer = yy_scan_string(input);
-                status = yyparse();
+                status = arithmetic_parse();
                 yy_delete_buffer(buffer);
 
                 if(status == 0){
-                    result = yylval;
+                    result = arithmetic_lval;
                     convertBase(result, N);
                 }else{
                     printf("Error parsing expression\n");
@@ -74,7 +78,6 @@ int main(void){
                 break;
             
             case 2:
-                mode = 2;
                 printf("----------------------\n");
                 printf("1. Infix to Prefix\n");
                 printf("2. Infix to Postfix\n");
@@ -84,26 +87,22 @@ int main(void){
 
                 while(getchar() != '\n');
 
+                if(command == 1){
+                    mode = 1;
+                } else if(command == 2){
+                    mode = 2;
+                } else {
+                    printf("Invalid Command\n");
+                    continue;
+                }
+
                 buffer = yy_scan_string(input);
-                status = yyparse();
+                status = notation_parse();
                 yy_delete_buffer(buffer);
 
                 if(status != 0){
                     printf("Error parsing expression\n");
-                    break;
                 }
-
-                //resultNode = (Node*)yylval;
-                /*
-                if(command == 1){
-                    printf("Prefix Notation: ");
-                    preorder(resultNode);
-                }else if(command == 2){
-                    printf("Postfix Notation: ");
-                    postorder(resultNode);
-                }else{
-                    printf("Invalid Command\n");
-                }*/
                 break;
 
             default:
