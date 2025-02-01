@@ -19,7 +19,7 @@
 
 사용자가 지정한 **n진수(2~36)**로 결과를 반환하여 출력
 
-### 🔄 Notation Conversion
+### 🔄 Notation Transformation
 
 Inorder(중위)로 입력된 산술 표현식을 Preorder(전위)와 Postorder(후위)로 변환
 
