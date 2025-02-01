@@ -42,6 +42,9 @@ void preorder(Node *node){
                 case ')':
                     printf(") ");
                     break;
+                case 'u':
+                    printf("- ");
+                    break;
                 default:
                     printf("%d ", node->token);
                     break;
@@ -85,6 +88,9 @@ void postorder(Node *node){
                     break;
                 case ')':
                     printf(") ");
+                    break;
+                case 'u':
+                    printf("- ");
                     break;
                 default:
                     printf("%d ", node->token);
