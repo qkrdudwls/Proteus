@@ -89,6 +89,7 @@ int main(void){
                 printf("----------------------\n");
                 printf("1. Infix to Prefix\n");
                 printf("2. Infix to Postfix\n");
+                printf("----------------------\n");
                 printf("Enter the Command Number: ");
                 scanf("%d", &command);
                 printf("\n");
