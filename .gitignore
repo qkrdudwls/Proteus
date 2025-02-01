@@ -4,3 +4,5 @@
 *.yy.c
 *.output
 .vscode
+build
+*.txt
