@@ -25,7 +25,6 @@ int main(void){
     print_warnings();
 
     while(1){
-        while(getchar() != '\n');
         mode = 0;
         arithmetic_mode = 0;
         command = 0;
@@ -54,11 +53,6 @@ int main(void){
 
         if(input[0] == '\n'){
             printf("Empty input is not allowed.\n");
-            continue;
-        }
-
-        if(fgets(input, 256, stdin) == NULL || strlen(input) >= 256){
-            printf("Error reading input or input too long.\n");
             continue;
         }
         
@@ -125,7 +119,7 @@ int main(void){
                     printf("Error initializing scan buffer.\n");
                     continue;
                 }
-                status = arithmetic_parse();
+                status = notation_parse();
                 yy_delete_buffer(buffer);
 
                 if(status != 0){
@@ -156,5 +150,4 @@ void print_warnings() {
     printf("> Error reports are welcome.\n");
     printf("----------------------------------------\n");
     printf("\n");
-    printf("Press Enter to Start\n");
 }
