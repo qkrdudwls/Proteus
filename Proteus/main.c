@@ -5,24 +5,30 @@
 #include "notation_parser.tab.h"
 
 int mode;
-int arithmetic_mode;
 int notation_mode;
 
 void yyerror(const char *s){
     fprintf(stderr, "Error: %s\n", s);
 }
 
+void print_infix();
+void print_prefix();
+void print_postfix();
+
 int main(void){
-    char input[256];
+    char input[259];
+    char expression[256];
+    char prerequisites[3];
+    int notation;
     int status;
     int result;
-    int command;
+    int command, notation_command;
     int N = 2;
     YY_BUFFER_STATE buffer = NULL;
 
     while(1){
-        mode = 0;
-        arithmetic_mode = 0;
+        input[0] = '\0';
+        notation = 0;
         command = 0;
 
         printf("------ Proteus ------\n");
@@ -44,20 +50,49 @@ int main(void){
             continue;
         }
 
+        printf("----------------------\n");
+        printf("Select the Notation to Input\n");
+        printf("1. Infix Notation\n");
+        printf("2. Prefix Notation\n");
+        printf("3. Postfix Notation\n");
+        printf("----------------------\n");
+        printf("Enter the Notation Number (Default: Infix): ");
+        scanf("%d", &notation_command);
+        printf("\n");
+
+        switch(notation_command){
+            case 1:
+            default:
+                strcpy(prerequisites, "in");
+                notation = 1;
+                break;
+            case 2:
+                strcpy(prerequisites, "pr");
+                notation = 2;
+                break;
+            case 3:
+                strcpy(prerequisites, "po");
+                notation = 3;
+                break;
+        }
+
+        while(getchar() != '\n');
+
         printf("Enter an expression: ");
-        fgets(input, 256, stdin);
+        fgets(expression, 256, stdin);
 
         if(input[0] == '\n'){
             printf("Error reading input\n");
             continue;
         }
         
+        memcpy(input, prerequisites, 2);
+        strcat(input, expression);
         printf("\n");
 
         switch(command){
             case 1:
                 mode = 1;
-                arithmetic_mode = 0;
                 printf("----------------------\n");
                 printf("\n");
                 printf("Enter the base N.\nN is greater than or equal to 2 and less than or equal to 36.The default value is 2.\n");
@@ -76,7 +111,7 @@ int main(void){
                 yy_delete_buffer(buffer);
 
                 if(status == 0){
-                    result = arithmetic_lval;
+                    result = arithmetic_lval.ival;
                     convertBase(result, N);
                 }else{
                     printf("Error parsing expression\n");
@@ -86,11 +121,21 @@ int main(void){
             case 2:
                 mode = 2;
                 notation_mode = 0;
-                printf("----------------------\n");
-                printf("1. Infix to Prefix\n");
-                printf("2. Infix to Postfix\n");
-                printf("----------------------\n");
-                printf("Enter the Command Number: ");
+
+                switch(notation){
+                    case 1:
+                        print_infix();
+                        break;
+                    case 2:
+                        print_prefix();
+                        break;
+                    case 3:
+                        print_postfix();
+                        break;
+                    default:
+                        break;
+                }
+
                 scanf("%d", &command);
                 printf("\n");
 
@@ -123,4 +168,28 @@ int main(void){
 
     printf("Program Terminated\n");
     return 0;
+}
+
+void print_infix(){
+    printf("----------------------\n");
+    printf("1. Infix to Prefix\n");
+    printf("2. Infix to Postfix\n");
+    printf("----------------------\n");
+    printf("Enter the Command Number: ");
+}
+
+void print_prefix(){
+    printf("----------------------\n");
+    printf("1. Prefix to Infix\n");
+    printf("2. Prefix to Postfix\n");
+    printf("----------------------\n");
+    printf("Enter the Command Number: ");
+}
+
+void print_postfix(){
+    printf("----------------------\n");
+    printf("1. Postfix to Infix\n");
+    printf("2. Postfix to Prefix\n");
+    printf("----------------------\n");
+    printf("Enter the Command Number: ");
 }

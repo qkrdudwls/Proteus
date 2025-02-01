@@ -11,9 +11,21 @@
 %}
 
 %%
+"pr" {
+    if(mode == 1) return ARITHMETIC_PREFIX; 
+    else if(mode == 2) return NOTATION_PREFIX;
+}
+"in" {
+    if(mode == 1) return ARITHMETIC_INFIX; 
+    else if(mode == 2) return NOTATION_INFIX;
+}
+"po" {
+    if(mode == 1) return ARITHMETIC_POSTFIX; 
+    else if(mode == 2) return NOTATION_POSTFIX;
+}
 [0-9]+ {
     if(mode == 1){
-        arithmetic_lval = atoi(yytext); 
+        arithmetic_lval.ival = atoi(yytext); 
         return ARITHMETIC_DIGIT;
     }else if(mode == 2){
         notation_lval.ival = atoi(yytext); 
