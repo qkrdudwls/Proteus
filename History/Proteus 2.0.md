@@ -43,8 +43,8 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 | NOTATION_DIV | / | Division operator. |
 | ARITHMETIC_EXP | ^ | Square operator. |
 | NOTATION_EXP | ^ | Square operator. |
-| ARITHMETIC_DIV | % | Remainder operator. |
-| NOTATION_DIV | % | Remainder operator. |
+| ARITHMETIC_MOD | % | Remainder operator. |
+| NOTATION_MOD | % | Remainder operator. |
 | ARITHMETIC_LPAREN | ( | Left parenthesis for grouping expressions. |
 | NOTATION_LPAREN | ( | Left parenthesis for grouping expressions. |
 | ARITHMETIC_RPAREN | ) | Right parenthesis for grouping expressions. |
