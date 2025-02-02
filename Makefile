@@ -1,27 +1,35 @@
-proteus-gcc: arithmetic-parser notation-parser lexer main.c baseConversion.c notationConversion.c
-	gcc -o proteus arithmetic_parser.tab.c notation_parser.tab.c lex.yy.c main.c baseConversion.c notationConversion.c -lm
+proteus-gcc: arithmetic-parser notation-parser lex ./src/main.c ./src/baseConversion.c ./src/notationConversion.c
+	gcc -o proteus -I./include ./src/arithmetic_parser.tab.c ./src/notation_parser.tab.c ./src/lex.yy.c ./src/main.c ./src/baseConversion.c ./src/notationConversion.c -lm
 
-proteus-clang: arithmetic-parser notation-parser lexer main.c baseConversion.c notationConversion.c
-	clang -o proteus arithmetic_parser.tab.c notation_parser.tab.c lex.yy.c main.c baseConversion.c notationConversion.c -lm
+proteus-clang: arithmetic-parser notation-parser lex ./src/main.c ./src/baseConversion.c ./src/notationConversion.c
+	clang -o proteus -I./include ./src/arithmetic_parser.tab.c ./src/notation_parser.tab.c ./src/lex.yy.c ./src/main.c ./src/baseConversion.c ./src/notationConversion.c -lm
 
-proteus-debug: arithmetic-parser notation-parser lexer main.c baseConversion.c notationConversion.c
-	gcc -g -o proteus arithmetic_parser.tab.c notation_parser.tab.c lex.yy.c main.c baseConversion.c notationConversion.c -lm
+proteus-debug: arithmetic-parser notation-parser lex main.c baseConversion.c notationConversion.c
+	gcc -g -o proteus -I./include ./src/arithmetic_parser.tab.c ./src/notation_parser.tab.c ./src/lex.yy.c ./src/main.c ./src/baseConversion.c ./src/notationConversion.c -lm
 	gdb proteus
 
-arithmetic-parser: arithmetic_parser.y
-	bison -d arithmetic_parser.y
+arithmetic-parser: ./parser/arithmetic_parser.y
+	bison -d ./parser/arithmetic_parser.y
+	mv arithmetic_parser.tab.h include/
+	mv arithmetic_parser.tab.c src/
 
-notation-parser: notation_parser.y
-	bison -d notation_parser.y	
+notation-parser: ./parser/notation_parser.y
+	bison -d ./parser/notation_parser.y	
+	mv notation_parser.tab.h include/
+	mv notation_parser.tab.c src/
 
-arithmetic-parsing-table: arithmetic_parser.y
-	bison -d -v arithmetic_parser.y
+arithmetic-parsing-table: ./parser/arithmetic_parser.y
+	bison -d -v ./parser/arithmetic_parser.y
+	mv arithmetic_parser.tab.h include/
+	mv arithmetic_parser.tab.c src/
 
-notation-parsing-table: notation_parser.y
-	bison -d -v notation_parser.y
+notation-parsing-table: ./parser/notation_parser.y
+	bison -d -v ./parser/notation_parser.y
+	mv notation_parser.tab.h include/
+	mv notation_parser.tab.c src/
 
-lexer: lexer.l
-	flex lexer.l
+lex: ./lexer/lexer.l
+	flex -o src/lex.yy.c ./lexer/lexer.l
 
 clean:
-	rm -f proteus arithmetic_parser.tab.c arithmetic_parser.tab.h notation_parser.tab.c notation_parser.tab.h lex.yy.c
+	rm -f proteus src/arithmetic_parser.tab.c src/notation_parser.tab.c src/lex.yy.c include/arithmetic_parser.tab.h include/notation_parser.tab.h
