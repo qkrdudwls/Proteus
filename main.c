@@ -7,10 +7,7 @@
 int mode;
 int notation_mode;
 
-void yyerror(const char *s){
-    fprintf(stderr, "Error: %s\n", s);
-}
-
+void yyerror(const char *s);
 void print_infix();
 void print_prefix();
 void print_postfix();
@@ -171,6 +168,10 @@ int main(void){
 
     printf("Program Terminated\n");
     return 0;
+}
+
+void yyerror(const char *s){
+    fprintf(stderr, "Error: %s\n", s);
 }
 
 void print_infix(){
