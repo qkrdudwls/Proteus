@@ -29,7 +29,7 @@
 
 %%
 
-input:
+input :
     NOTATION_PREFIX preorder_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) inorder(root); else if(notation_mode == 2) postorder(root); free_tree(root); }
     | NOTATION_INFIX inorder_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) preorder(root); else if(notation_mode == 2) postorder(root); free_tree(root); }
     | NOTATION_POSTFIX postorder_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) preorder(root); else if(notation_mode == 2) inorder(root); free_tree(root); }
@@ -37,7 +37,7 @@ input:
     | NOTATION_POSTFIX unary_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) preorder(root); else if(notation_mode == 2) inorder(root); free_tree(root); }
     ;
 
-inorder_expr: 
+inorder_expr : 
     inorder_expr NOTATION_PLUS inorder_expr { $$ = createNode('+', 1, $1, $3); }
     | inorder_expr NOTATION_MINUS inorder_expr { $$ = createNode('-', 1, $1, $3); }
     | inorder_expr NOTATION_MULT inorder_expr { $$ = createNode('*', 1, $1, $3); }
@@ -50,7 +50,7 @@ inorder_expr:
     | NOTATION_DIGIT { $$ = createLeaf($1); }
     ;
 
-preorder_expr:
+preorder_expr :
     NOTATION_PLUS preorder_expr preorder_expr { $$ = createNode('+', 1, $2, $3); }
     | NOTATION_MINUS preorder_expr preorder_expr { $$ = createNode('-', 1, $2, $3); }
     | NOTATION_MULT preorder_expr preorder_expr { $$ = createNode('*', 1, $2, $3); }
@@ -60,7 +60,7 @@ preorder_expr:
     | NOTATION_DIGIT { $$ = createLeaf($1); }
     ;
 
-postorder_expr:
+postorder_expr :
     postorder_expr postorder_expr NOTATION_PLUS { $$ = createNode('+', 1, $1, $2); }
     | postorder_expr postorder_expr NOTATION_MINUS { $$ = createNode('-', 1, $1, $2); }
     | postorder_expr postorder_expr NOTATION_MULT { $$ = createNode('*', 1, $1, $2); }
@@ -70,8 +70,9 @@ postorder_expr:
     | NOTATION_DIGIT { $$ = createLeaf($1); }
     ;
 
-unary_expr:
+unary_expr :
     NOTATION_PLUS NOTATION_DIGIT %prec NOTATION_UPLUS { $$ = createLeaf($2); }
     | NOTATION_MINUS NOTATION_DIGIT %prec NOTATION_UMINUS { $$ = createLeaf(-$2); }
     ;
+    
 %%
