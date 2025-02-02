@@ -83,7 +83,7 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 
 **postfix_expr** -> postfix_expr postfix_expr ARITHMETIC_PLUS | postfix_expr postfix_expr ARITHMETIC_MINUS | postfix_expr postfix_expr ARITHMETIC_MULT | postfix_expr postfix_expr ARITHMETIC_DIV | postfix_expr postfix_expr ARITHMETIC_EXP | postfix_expr postfix_expr ARITHMETIC_MOD | ARITHMETIC_DIGIT
 
-**unary_expr** -> ARITHMETIC_PLUS ARITHMETIC_DIGIT %prec ARITHMETIC_UPLUS | ARITHMETIC_MINUS ARITHMETIC_DIGIT
+**unary_expr** -> ARITHMETIC_PLUS ARITHMETIC_DIGIT | ARITHMETIC_MINUS ARITHMETIC_DIGIT
 
 #### Notation Conversion
 
