@@ -27,7 +27,9 @@ int main(void){
     YY_BUFFER_STATE buffer = NULL;
 
     while(1){
-        input[0] = '\0';
+        memset(input, 0, sizeof(input));
+        memset(expression, 0, sizeof(expression));
+        memset(prerequisites, 0, sizeof(prerequisites));
         notation = 0;
         command = 0;
 
@@ -136,6 +138,7 @@ int main(void){
                         break;
                 }
 
+                printf("Enter the Command Number: ");
                 scanf("%d", &command);
                 printf("\n");
 
@@ -175,7 +178,6 @@ void print_infix(){
     printf("1. Infix to Prefix\n");
     printf("2. Infix to Postfix\n");
     printf("----------------------\n");
-    printf("Enter the Command Number: ");
 }
 
 void print_prefix(){
@@ -183,7 +185,6 @@ void print_prefix(){
     printf("1. Prefix to Infix\n");
     printf("2. Prefix to Postfix\n");
     printf("----------------------\n");
-    printf("Enter the Command Number: ");
 }
 
 void print_postfix(){
@@ -191,5 +192,4 @@ void print_postfix(){
     printf("1. Postfix to Infix\n");
     printf("2. Postfix to Prefix\n");
     printf("----------------------\n");
-    printf("Enter the Command Number: ");
 }
