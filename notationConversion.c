@@ -40,6 +40,9 @@ void printToken(Node *node){
                 break;
             case ')':
                 printf(") ");
+                break;\
+            case 'p':
+                printf("+ ");
                 break;
             case 'u':
                 printf("- ");
