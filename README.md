@@ -73,7 +73,7 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 
 ### 📜 Context-Free Grammar
 
-#### ♾️ Arithmetic Expression Evaluation
+#### Arithmetic Expression Evaluation
 
 **input** -> ARITHMETIC_PREFIX prefix_expr ARITHMETIC_NEWLINE | ARITHMETIC_INFIX infix_expr ARITHMETIC_NEWLINE | ARITHMETIC_POSTFIX postfix_expr ARITHMETIC_NEWLINE | ARITHMETUC_PREFIX unary_expr ARITHMETIC_NEWLINE | ARITHMETIC_POSTFIX unary_expr ARITHMETIC_NEWLINE
 
@@ -85,7 +85,7 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 
 **unary_expr** -> ARITHMETIC_PLUS ARITHMETIC_DIGIT %prec ARITHMETIC_UPLUS | ARITHMETIC_MINUS ARITHMETIC_DIGIT
 
-#### ➰ Notation Conversion
+#### Notation Conversion
 
 **input** -> NOTATION_PREFIX preorder_expr NOTATION_NEWLINE | NOTATION_INFIX inorder_expr NOTATION_NEWLINE | NOTATION_POSTFIX postorder_expr NOTATION_NEWLINE | NOTATION_PREFIX unary_expr NOTATION_NEWLINE | NOTATION_POSTFIX unary_expr NOTATION_NEWLINE
 
