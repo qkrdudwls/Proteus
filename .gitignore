@@ -1,7 +1,4 @@
 *.exe
-*.tab.c
-*.tab.h
-*.yy.c
 *.output
 .vscode
 build
