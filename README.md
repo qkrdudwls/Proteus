@@ -131,7 +131,7 @@ Context-Free Grammar 기반의 표현식을 해석하고 연산을 수행하는 
 
 #### Lexer 생성
 
-`make lexer`
+`make lex`
 
 #### 빌드 결과물 삭제
 
