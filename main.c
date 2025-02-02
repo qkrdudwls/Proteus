@@ -8,6 +8,7 @@ int mode;
 int notation_mode;
 
 void yyerror(const char *s);
+void print_warnings();
 void print_infix();
 void print_prefix();
 void print_postfix();
@@ -22,6 +23,8 @@ int main(void){
     int command, notation_command;
     int N = 2;
     YY_BUFFER_STATE buffer = NULL;
+
+    print_warnings();
 
     while(1){
         memset(input, 0, sizeof(input));
@@ -172,6 +175,20 @@ int main(void){
 
 void yyerror(const char *s){
     fprintf(stderr, "Error: %s\n", s);
+}
+
+void print_warnings() {
+    printf("------ Proteus 2.0 Usage Warnings ------\n");
+    printf("> Commands must be entered as numbers. Please enter the correct command number.\n");
+    printf("> Expressions must be 256 characters or less. Longer expressions may result in errors.\n");
+    printf("> Base N must be a value between 2 and 36. Any other values will cause an error.\n");
+    printf("> If invalid input is entered, please try again.\n");
+    printf("> Pay close attention to error messages that occur during parsing.\n");
+    printf("> Note: The program uses the int data type for command inputs and base N.\n");
+    printf("        Ensure the values entered are within the valid range for int to avoid potential issues.\n");
+    printf("> Error reports are welcome.\n");
+    printf("----------------------------------------\n");
+    printf("\n");
 }
 
 void print_infix(){
