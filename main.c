@@ -19,9 +19,9 @@ int main(void){
     char input[259];
     char expression[256];
     char prerequisites[3];
-    int notation;
     int status;
     int result;
+    int notation;
     int command, notation_command;
     int N = 2;
     YY_BUFFER_STATE buffer = NULL;
