@@ -30,11 +30,36 @@
 %%
 
 input :
-    NOTATION_PREFIX preorder_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) inorder(root); else if(notation_mode == 2) postorder(root); free_tree(root); }
-    | NOTATION_INFIX inorder_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) preorder(root); else if(notation_mode == 2) postorder(root); free_tree(root); }
-    | NOTATION_POSTFIX postorder_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) preorder(root); else if(notation_mode == 2) inorder(root); free_tree(root); }
-    | NOTATION_PREFIX unary_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) inorder(root); else if(notation_mode == 2) postorder(root); free_tree(root); }
-    | NOTATION_POSTFIX unary_expr NOTATION_NEWLINE { root = $2; if(notation_mode == 1) preorder(root); else if(notation_mode == 2) inorder(root); free_tree(root); }
+    NOTATION_PREFIX preorder_expr NOTATION_NEWLINE { 
+        root = $2; 
+        if(notation_mode == 1) inorder(root); 
+        else if(notation_mode == 2) postorder(root); 
+        free_tree(root);
+        }
+    | NOTATION_INFIX inorder_expr NOTATION_NEWLINE { 
+        root = $2; 
+        if(notation_mode == 1) preorder(root); 
+        else if(notation_mode == 2) postorder(root); 
+        free_tree(root); 
+        }
+    | NOTATION_POSTFIX postorder_expr NOTATION_NEWLINE { 
+        root = $2; 
+        if(notation_mode == 1) preorder(root); 
+        else if(notation_mode == 2) inorder(root); 
+        free_tree(root); 
+        }
+    | NOTATION_PREFIX unary_expr NOTATION_NEWLINE { 
+        root = $2; 
+        if(notation_mode == 1) inorder(root); 
+        else if(notation_mode == 2) postorder(root); 
+        free_tree(root); 
+        }
+    | NOTATION_POSTFIX unary_expr NOTATION_NEWLINE { 
+        root = $2; 
+        if(notation_mode == 1) preorder(root); 
+        else if(notation_mode == 2) inorder(root); 
+        free_tree(root); 
+        }
     ;
 
 inorder_expr : 
