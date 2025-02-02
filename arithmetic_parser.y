@@ -47,7 +47,9 @@ infix_expr :
      ;
 
 prefix_expr :
-     ARITHMETIC_MULT prefix_expr prefix_expr { $$ = $2 * $3; }
+     ARITHMETIC_PLUS prefix_expr prefix_expr { $$ = $2 + $3; }
+     | ARITHMETIC_MINUS prefix_expr prefix_expr { $$ = $2 - $3; }
+     | ARITHMETIC_MULT prefix_expr prefix_expr { $$ = $2 * $3; }
      | ARITHMETIC_DIV prefix_expr prefix_expr { $$ = $2 / $3; if($3 == 0) yyerror("Division by zero"); }
      | ARITHMETIC_EXP prefix_expr prefix_expr { $$ = pow($2, $3); }
      | ARITHMETIC_MOD prefix_expr prefix_expr { $$ = $2 % $3; }
