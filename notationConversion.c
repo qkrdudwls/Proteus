@@ -58,13 +58,13 @@ void printToken(Node *node){
 
 void inorder(Node *node){
     if(node != NULL){
-        if(node->is_operator && node->token != 'u'){
+        if(node->is_operator && node->token != 'u' && node->token != 'p'){
             printf("( ");
         }
         inorder(node->left);
         printToken(node);
         inorder(node->right);
-        if(node->is_operator && node->token != 'u'){
+        if(node->is_operator && node->token != 'u' && node->token != 'p'){
             printf(") ");
         }
     } else {
