@@ -164,6 +164,7 @@ int main(void){
                 break;
 
             default:
+                printf("Invalid Command\n");
                 break;
         }
         printf("\n");
