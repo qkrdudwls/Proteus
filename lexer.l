@@ -15,14 +15,17 @@
     if(mode == 1) return ARITHMETIC_PREFIX; 
     else if(mode == 2) return NOTATION_PREFIX;
 }
+
 "in" {
     if(mode == 1) return ARITHMETIC_INFIX; 
     else if(mode == 2) return NOTATION_INFIX;
 }
+
 "po" {
     if(mode == 1) return ARITHMETIC_POSTFIX; 
     else if(mode == 2) return NOTATION_POSTFIX;
 }
+
 [0-9]+ {
     if(mode == 1){
         arithmetic_lval.ival = atoi(yytext); 
@@ -32,44 +35,56 @@
         return NOTATION_DIGIT;
     }
 }
+
 "+" {
     if(mode == 1) return ARITHMETIC_PLUS;
     else if(mode == 2) return NOTATION_PLUS;
 }
+
 "-" {
     if(mode == 1) return ARITHMETIC_MINUS;
     else if(mode == 2) return NOTATION_MINUS;
 }
+
 "*" {
     if(mode == 1) return ARITHMETIC_MULT;
     else if(mode == 2) return NOTATION_MULT;
 }
+
 "/" {
     if(mode == 1) return ARITHMETIC_DIV;
     else if(mode == 2) return NOTATION_DIV;
 }
+
 "^" {
     if(mode == 1) return ARITHMETIC_EXP;
     else if(mode == 2) return NOTATION_EXP;
 }
+
 "%" {
     if(mode == 1) return ARITHMETIC_MOD;
     else if(mode == 2) return NOTATION_MOD;
 }
+
 "(" {
     if(mode == 1) return ARITHMETIC_LPAREN;
     else if(mode == 2) return NOTATION_LPAREN;
 }
+
 ")" {
     if(mode == 1) return ARITHMETIC_RPAREN;
     else if(mode == 2) return NOTATION_RPAREN;
 }
+
 [ \t]+ {}
+
 \n {
     if(mode == 1) return ARITHMETIC_NEWLINE;
     else if(mode == 2) return NOTATION_NEWLINE;
 }
+
 . {printf("Error: %c\n", yytext[0]); exit(1);}
+
 %%
 
 int yywrap(){
