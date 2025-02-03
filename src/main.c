@@ -179,7 +179,7 @@ void yyerror(const char *s){
 }
 
 void print_warnings() {
-    printf("------ Proteus 3.0 Usage Warnings ------\n");
+    printf("------ Proteus 3.0.1 Usage Warnings ------\n");
     printf("> Commands must be entered as numbers. Please enter the correct command number.\n");
     printf("> Expressions must be 256 characters or less. Longer expressions may result in errors.\n");
     printf("> Base N must be a value between 2 and 36. Any other values will cause an error.\n");
